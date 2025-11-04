@@ -373,7 +373,7 @@ export default function Page() {
       >
         <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-4 text-center">
           <CountTo end={10} label="Years Clinical Experience" />
-          <CountTo end={200} label="Clients Helped" />
+          <CountTo end={500} label="Clients Helped" />
           <CountTo end={12} label="Conditions Covered" />
           <CountTo end={100} label="% Home‑cooked Meals" />
         </div>
