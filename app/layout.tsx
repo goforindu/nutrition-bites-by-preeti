@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
+import WhatsappButton from "./components/WhatsappButton";
 
 export const metadata: Metadata = {
   title: "NutritionBitesByPreeti — Clinical Nutritionist, Dt. Preeti Chauhan",
@@ -25,7 +26,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <main className="flex-grow">{children}</main>
+        <WhatsappButton />
+      </body>
     </html>
   );
 }

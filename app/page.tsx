@@ -175,15 +175,7 @@ export default function Page() {
               className="hover:underline inline-flex items-center gap-1"
               href="mailto:pcnutritionbites@gmail.com"
             >
-              <Mail size={14} /> pcnutritionbites@gmail.com
-            </a>
-            <a
-              className="hover:underline inline-flex items-center gap-1"
-              href="https://wa.me/919625310091"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={14} /> WhatsApp
+              <Mail size={14} /> support@nutrition-bites-by-preeti.com
             </a>
           </p>
         </div>
@@ -281,9 +273,13 @@ export default function Page() {
         ref={heroRef}
       >
         {/* Layers: gradient + leaf accent */}
-        <motion.div style={{ y }} className="absolute inset-0">
+        <motion.div
+          style={{ y }}
+          className="absolute inset-0 pointer-events-none"
+        >
           <div className="absolute inset-0 opacity-70 bg-[radial-gradient(60rem_30rem_at_10%_-10%,#bbf7d0,transparent),radial-gradient(40rem_30rem_at_110%_-20%,#a7f3d0,transparent)]" />
         </motion.div>
+
         <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -295,6 +291,7 @@ export default function Page() {
               <Leaf size={14} className="text-emerald-700" /> Dt. Preeti Chauhan
               • Clinical Nutritionist
             </p>
+
             <h1 className="mt-4 text-4xl md:text-5xl font-extrabold leading-tight">
               Transforming health the simple way —
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600">
@@ -303,9 +300,11 @@ export default function Page() {
               </span>
               , just real results.
             </h1>
+
             <p className="mt-4 text-slate-600 max-w-prose">
               10+ yrs exp • Sir Ganga Ram • Fortis • VLCC • Fitelo
             </p>
+
             <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
               {[
                 "Healthy weight & inch loss",
@@ -320,40 +319,47 @@ export default function Page() {
                 </li>
               ))}
             </ul>
+
+            {/* ✅ CTAs (clickable now) */}
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <button
+                type="button"
                 onClick={() => scrollToId("contact")}
-                className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium shadow hover:opacity-95"
+                className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium shadow hover:opacity-95 relative z-10"
               >
                 Book Free Consultation
               </button>
+
               <button
+                type="button"
                 onClick={() => scrollToId("programs")}
-                className="px-5 py-3 rounded-xl border font-medium hover:bg-slate-50"
+                className="px-5 py-3 rounded-xl border font-medium hover:bg-slate-50 relative z-10"
               >
                 Explore Programs
               </button>
             </div>
+
             <p className="mt-3 text-xs text-slate-500">
               Refer friends & earn cash rewards.
             </p>
           </motion.div>
+
+          {/* Doctor image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="relative grid w-full place-items-center rounded-3xl border bg-white/70 p-4 shadow-lg backdrop-blur"
-            style={{ minHeight: "400px" }} // ensures no cropping even on mobile
+            style={{ minHeight: "400px" }}
           >
-            {/* Soft glow accents */}
+            {/* Soft glow accents (already safe because pointer-events-none is applied) */}
             <div className="pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-emerald-200/60 blur-2xl" />
             <div className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-teal-200/60 blur-2xl" />
 
-            {/* Doctor image */}
             <div className="relative w-full h-80 md:h-[28rem]">
               <Image
-                src="/images/preeti_profile_pic.jpeg" // 🩺 place your image in public/doctor-preeti.png
+                src="/images/preeti_profile_pic.jpeg"
                 alt="Dt. Preeti Chauhan - Clinical Nutritionist"
                 fill
                 className="object-cover rounded-3xl"
@@ -377,7 +383,7 @@ export default function Page() {
           <CountTo end={12} label="Conditions Covered" />
           <CountTo end={100} label="% Home‑cooked Meals" />
         </div>
-        <div className="max-w-5xl mx-auto px-4 pb-12">
+        {/* <div className="max-w-5xl mx-auto px-4 pb-12">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -392,10 +398,59 @@ export default function Page() {
               home‑cooked meals — no fads, no extreme diets.
             </p>
           </motion.div>
+        </div> */}
+        <div className="max-w-5xl mx-auto px-4 pb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-3xl border p-8 bg-white/90 backdrop-blur shadow"
+          >
+            <h2 className="text-3xl font-bold text-emerald-800">
+              About Nutrition Bites by Preeti
+            </h2>
+
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              <strong>Dt. Preeti Chauhan</strong> is a{" "}
+              <strong>Senior Dietitian and Clinical Nutrition Expert </strong>
+              with over <strong>10 years of experience</strong> in renowned
+              hospitals and wellness centres including Sir Ganga Ram Hospital,
+              Fortis Hospital, VLCC, Aarogya Health Care, and Fitelo Weight
+              Management. She specializes in{" "}
+              <strong>
+                weight management, PCOD nutrition, therapeutic diets, and
+                lifestyle coaching
+              </strong>
+              .
+            </p>
+
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              Her approach combines{" "}
+              <strong>medical nutrition therapy (MNT)</strong> with
+              <strong> behaviour and lifestyle coaching</strong> to help clients
+              achieve lasting results — without crash diets or food deprivation.
+              Every plan focuses on balanced, home-cooked, budget-friendly meals
+              that fit individual routines and cultures.
+            </p>
+
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              She holds an <strong>M.Sc. in Food Science and Safety</strong>{" "}
+              from Allahabad University and has worked with hundreds of clients
+              to reverse metabolic issues like diabetes, thyroid, and fatty
+              liver. Fluent in English and Hindi, Dt. Preeti believes that
+              nutrition is not about restriction — it’s about balance,
+              awareness, and consistency.
+            </p>
+
+            <p className="mt-4 text-slate-700 italic">
+              “Small, consistent choices create big health changes — one meal at
+              a time.”
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Programs with gradient borders */}
+      {/* Programs with gradient borders
       <section
         id="programs"
         className="max-w-6xl mx-auto px-4 py-16 scroll-mt-28 md:scroll-mt-36"
@@ -481,6 +536,160 @@ export default function Page() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section> */}
+      {/* Programs with gradient borders */}
+      <section
+        id="programs"
+        className="max-w-6xl mx-auto px-4 py-16 scroll-mt-28 md:scroll-mt-36"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl"
+        >
+          <h2 className="text-3xl font-bold">Personalized Programs</h2>
+          <p className="mt-2 text-slate-600">
+            Designed around your routine, tastes and budget — with visible,
+            sustainable results.
+          </p>
+        </motion.div>
+
+        {/* cards */}
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Weight Loss & Inch Loss",
+              img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&q=60",
+              points: [
+                "Custom meal plans",
+                "Weekly reviews",
+                "Plate-planning & eating out tips",
+              ],
+            },
+            {
+              title: "PCOD / Hormonal Balance",
+              img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&q=60",
+              points: [
+                "Cycle-friendly nutrition",
+                "Anti-inflammatory meals",
+                "Stress & sleep coaching",
+              ],
+            },
+            {
+              title: "Pre-Conception Nutrition",
+              img: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=900&q=60",
+              points: [
+                "Fertility-supportive diet",
+                "Micronutrient focus",
+                "Couple guidance available",
+              ],
+            },
+            {
+              title: "Metabolic Health",
+              img: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=900&q=60",
+              points: [
+                "Diabetes & BP",
+                "Cholesterol control",
+                "Fatty liver reversal",
+              ],
+            },
+            {
+              title: "Gut & Immunity",
+              img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=60",
+              points: [
+                "IBS / bloating support",
+                "Probiotic foods",
+                "Immunity routines",
+              ],
+            },
+            {
+              title: "Joint & Knee Pain",
+              img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=900&q=60",
+              points: [
+                "Anti-inflammatory diet",
+                "Weight support",
+                "Daily movement goals",
+              ],
+            },
+          ].map((card, idx) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ delay: idx * 0.05, duration: 0.35 }}
+              className="relative rounded-2xl p-0.5 bg-gradient-to-br from-emerald-300 to-teal-200"
+            >
+              <div
+                className="rounded-2xl p-6 bg-white overflow-hidden transform transition-transform duration-200 hover:-translate-y-2 hover:shadow-lg"
+                role="group"
+                aria-labelledby={`program-title-${idx}`}
+              >
+                {/* decorative faded blob */}
+                <svg
+                  className="pointer-events-none absolute -top-6 -right-6 opacity-20"
+                  width="140"
+                  height="140"
+                  viewBox="0 0 200 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient id={`prog-grad-${idx}`} x1="0" x2="1">
+                      <stop offset="0%" stopColor="#34D399" />
+                      <stop offset="100%" stopColor="#14B8A6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div className="flex items-start gap-4">
+                  {/* thumbnail */}
+                  <img
+                    src={card.img}
+                    alt={`${card.title} thumbnail`}
+                    className="w-14 h-14 rounded-lg object-cover flex-shrink-0 ring-1 ring-gray-100 shadow-sm"
+                    loading="lazy"
+                  />
+
+                  <div className="flex-1">
+                    <h3
+                      id={`program-title-${idx}`}
+                      className="text-lg font-semibold text-slate-900 flex items-center gap-2"
+                    >
+                      {card.title}
+                    </h3>
+
+                    <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                      {card.points.map((p) => (
+                        <li key={p} className="flex gap-2 items-start">
+                          <CheckCircle2
+                            className="text-emerald-600 mt-0.5"
+                            size={16}
+                          />
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* subtle footer / CTA */}
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-xs text-slate-400">
+                    Personalized | 1:1 Support
+                  </span>
+                  <button
+                    className="text-xs font-medium px-3 py-1 rounded-full border border-emerald-100 hover:bg-emerald-50 transition"
+                    aria-label={`Learn more about ${card.title}`}
+                  >
+                    Learn more
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -671,9 +880,9 @@ export default function Page() {
                 <Mail size={16} />{" "}
                 <a
                   className="underline"
-                  href="mailto:pcnutritionbites@gmail.com"
+                  href="mailto:support@nutrition-bites-by-preeti.com"
                 >
-                  pcnutritionbites@gmail.com
+                  support@nutrition-bites-by-preeti.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -757,75 +966,125 @@ export default function Page() {
       </section>
 
       {/* Footer */}
-      <footer className="relative">
-        <div className="max-w-6xl mx-auto px-4 pt-10 pb-16 grid md:grid-cols-4 gap-8 text-sm">
-          <div>
-            <p className="font-semibold">NutritionBitesByPreeti</p>
-            <p className="mt-2 text-slate-600">
-              Simple nutrition for real results.
+
+      <footer className="relative bg-gradient-to-r from-emerald-900 via-teal-900 to-emerald-800 text-white">
+        <div className="max-w-6xl mx-auto px-4 pt-12 pb-16 grid md:grid-cols-4 gap-10 text-sm">
+          {/* Brand / Intro */}
+          <div className="space-y-3">
+            <p className="font-bold text-lg text-emerald-300">
+              NutritionBitesByPreeti
+            </p>
+            <p className="text-slate-100 leading-relaxed">
+              NutritionBitesByPreeti is a trusted clinical nutrition consultancy
+              offering personalized diet guidance for weight management,
+              hormonal balance, PCOD care, and holistic wellness — helping you
+              achieve real results with simple nutrition.
+            </p>
+            <p className="text-emerald-200 font-semibold mt-3">
+              Dt. Preeti Chauhan – Certified Dietitian & Wellness Coach
             </p>
           </div>
+
+          {/* Programs / Quick Links */}
           <div>
-            <p className="font-semibold">Quick Links</p>
+            <p className="font-semibold text-emerald-300">Quick Links</p>
             <ul className="mt-2 space-y-1">
-              <li>
-                <button
-                  onClick={() => scrollToId("programs")}
-                  className="hover:underline"
-                >
-                  Programs
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToId("conditions")}
-                  className="hover:underline"
-                >
-                  Conditions
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToId("faq")}
-                  className="hover:underline"
-                >
-                  FAQs
-                </button>
-              </li>
+              {[
+                ["about", "About"],
+                ["programs", "Programs"],
+                ["conditions", "Conditions"],
+                ["approach", "Approach"],
+                ["results", "Results"],
+                ["faq", "FAQs"],
+
+                ["contact", "Book Free Call"],
+              ].map(([id, label]) => (
+                <li key={id}>
+                  <button
+                    onClick={() => scrollToId(id)}
+                    className="hover:text-emerald-300 text-slate-100 transition-colors"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
+
+          {/* Get in Touch */}
           <div>
-            <p className="font-semibold">Contact</p>
-            <ul className="mt-2 space-y-1">
-              <li>📞 +91 96253 10091</li>
-              <li>✉️ pcnutritionbites@gmail.com</li>
-              <li>Delhi, India</li>
-            </ul>
+            <p className="font-semibold text-emerald-300">Get in Touch</p>
+            <div className="mt-3 space-y-3 text-slate-100">
+              <div>
+                <p className="font-medium text-emerald-200">Email</p>
+                <p>support@nutrition-bites-by-preeti.com</p>
+              </div>
+              <div>
+                <p className="font-medium text-emerald-200">Phone</p>
+                <p>+91 96253 10091</p>
+              </div>
+              <div>
+                <p className="font-medium text-emerald-200">Address</p>
+                <p>
+                  RZ-13/14, Flat No. 304,
+                  <br />
+                  Matiala Extn, Uttam Nagar,
+                  <br />
+                  New Delhi – 110059
+                </p>
+              </div>
+            </div>
           </div>
+
+          {/* Legal */}
           <div>
-            <p className="font-semibold">Legal</p>
-            <ul className="mt-2 space-y-1">
+            <p className="font-semibold text-emerald-300">Legal</p>
+            <ul className="mt-2 space-y-1 text-slate-100">
               <li>
-                <a href="#" className="hover:underline">
-                  Terms
+                <a
+                  href="#"
+                  className="hover:text-emerald-300 transition-colors"
+                >
+                  Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:underline">
-                  Privacy
+                <a
+                  href="#"
+                  className="hover:text-emerald-300 transition-colors"
+                >
+                  Terms of Service
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="text-center text-xs text-slate-500 pb-8">
-          © {new Date().getFullYear()} NutritionBitesByPreeti. All rights
-          reserved.
+
+        {/* Bottom Bar */}
+        <div className="border-t border-emerald-700/40 text-center text-xs text-slate-100 py-6 space-y-1">
+          <p>
+            © {new Date().getFullYear()}{" "}
+            <span className="text-emerald-300 font-medium">
+              NutritionBitesByPreeti
+            </span>
+            . All Rights Reserved.
+          </p>
+          <p className="text-emerald-200">
+            Designed & Developed by{" "}
+            <a
+              href="https://www.nexinora.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-emerald-300 hover:text-emerald-200 transition-colors"
+            >
+              NEXinora Technologies
+            </a>
+          </p>
         </div>
       </footer>
 
       {/* Mobile sticky CTA bar */}
-      <div className="md:hidden fixed bottom-3 left-3 right-3 grid grid-cols-2 gap-3">
+      {/* <div className="md:hidden fixed bottom-3 left-3 right-3 grid grid-cols-2 gap-3">
         <a
           href="https://wa.me/919625310091?text=Hi%20I%20want%20a%20consultation"
           target="_blank"
@@ -840,7 +1099,7 @@ export default function Page() {
         >
           Book Call
         </button>
-      </div>
+      </div> */}
     </main>
   );
 }
