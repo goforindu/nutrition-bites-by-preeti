@@ -10,7 +10,7 @@ import { ChevronDown, HelpCircle } from "lucide-react";
 const TransformationsSection = () => {
   const transformations = [
     {
-      name: "Akanksha sontake, 32",
+      name: "Akanksha sontake, 29",
       goal: "weight loss",
       duration: "5 months",
       beforeImg: "/images/transform/pic5.jpeg",
