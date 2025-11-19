@@ -83,7 +83,7 @@ export function ResultsSection() {
       <div className="overflow-hidden">
         <div
           className={
-            `flex gap-6 py-6 animate-[scrollX_25s_linear_infinite] ` +
+            `flex gap-6 py-6 animate-[scrollX_25s_linear_infinite] select-none touch-none ` +
             (isPaused
               ? "[animation-play-state:paused]"
               : "[animation-play-state:running]")
