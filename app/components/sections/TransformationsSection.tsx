@@ -28,7 +28,7 @@ const TransformationsSection = () => {
         "32-year-old sales manager Dhirendra went from 101 kg to 87 kg, relieved his back pain, reduced cravings, improved sleep and confidence, and even got his marriage fixed — all through Preeti’s simple, ghar-ka-khana based guided plan.",
     },
     {
-      name: "Madhusmita, 30",
+      name: "Anju Baghel, 30",
       goal: "Weight Loss",
       duration: "4 months",
       beforeImg: "/images/transform/pic2.jpeg",
