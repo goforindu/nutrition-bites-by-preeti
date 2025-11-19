@@ -60,20 +60,19 @@ function scrollToId(id: string) {
 // testimonialData.js
 export const testimonials = [
   {
-    name: "Ritika Sharma",
+    name: "Vipasha Oswal",
     photo:
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
-    comment:
-      "I lost 6 kg in 7 weeks without starving. Preeti ma’am’s meal plans are realistic and easy to follow. My energy levels have doubled!",
+    comment: "I am extremely greatful to Dt. Preeti Chauhan ",
     goal: "Weight Loss",
   },
   {
-    name: "Neha Verma",
+    name: "Gurdeep Kaur",
     photo:
       "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
     comment:
-      "My PCOD symptoms reduced drastically in just 2 months. Periods became regular and bloating disappeared. I finally feel normal again.",
-    goal: "PCOD Support",
+      "I recently had pleasure to receive Preeti Chauhan's guidance for weight loss. She provided me with a personalized plan that helped me lose weight and improve my overall health.",
+    goal: "weight loss",
   },
   {
     name: "Aditi Singh",
@@ -102,7 +101,33 @@ export const testimonials = [
     goal: "Joint & Knee Pain",
   },
 ];
-
+const transformations = [
+  {
+    name: "Akanksha sontake, 32",
+    goal: "PCOD & weight loss",
+    duration: "5 months",
+    beforeImg: "/images/transform/pic5.jpeg",
+    afterImg: "/images/transform/pic1.jpeg",
+    highlight: "Lost 12 kg, more energy, improved cycle regularity.",
+  },
+  {
+    name: "Dhirendra Tiwari, 41",
+    goal: "Diabetes & belly fat",
+    duration: "4 months",
+    beforeImg: "/images/transform/pic4.jpeg",
+    afterImg: "/images/results/rahul-after.jpg",
+    highlight: "Better sugar control, 9 kg weight loss.",
+  },
+  {
+    name: "Gurdeep bedi, 35",
+    goal: "Overweight / Obesity",
+    duration: "4 months",
+    beforeImg: "/images/transform/pic3.jpeg",
+    afterImg: "/images/results/neha-after.jpg",
+    highlight:
+      "14 kgs in 4 months with noticeable Inches loss, from 81 to 67 kgs.",
+  },
+];
 const CONDITIONS = [
   { name: "Diabetes (Type 2)", icon: Droplet },
   { name: "High Cholesterol", icon: Flame },
@@ -113,24 +138,6 @@ const CONDITIONS = [
   { name: "Irregular Periods", icon: Activity },
   { name: "Gut Issues / IBS", icon: Apple },
   { name: "Overweight / Obesity", icon: Weight },
-];
-const faqs = [
-  {
-    q: "Do I need special foods?",
-    a: "No. We use simple home-cooked meals and locally available ingredients tailored to your tastes and budget.",
-  },
-  {
-    q: "Is this a strict diet?",
-    a: "No crash dieting or extreme restrictions. We focus on portioning, habits and gradual, sustainable change.",
-  },
-  {
-    q: "How often are follow-ups?",
-    a: "Typically weekly check-ins (call/WhatsApp). Frequency is customized to your needs and progress.",
-  },
-  {
-    q: "Is this online or in-person?",
-    a: "Both options are available: remote via phone/WhatsApp and in-clinic consultations when needed.",
-  },
 ];
 
 function useActiveSection(ids: string[]) {
@@ -275,7 +282,7 @@ export default function Page() {
   const faqs = [
     {
       q: "Do I need special foods?",
-      a: "No. We use simple home-cooked meals and locally available ingredients tailored to your tastes and budget.",
+      a: "Not at all! Your plan will be based on simple home-cooked meals using locally available, affordable ingredients — customized to your taste, lifestyle, and nutritional needs.",
     },
     {
       q: "Is this a strict diet?",
@@ -287,7 +294,7 @@ export default function Page() {
     },
     {
       q: "Is this online or in-person?",
-      a: "Both options are available: remote via phone/WhatsApp and in-clinic consultations when needed.",
+      a: "Online consultations available via phone and WhatsApp. In-clinic consultations will be available soon.",
     },
   ];
   const programs = [
@@ -343,7 +350,7 @@ export default function Page() {
     },
   ];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+  const [isPaused, setIsPaused] = useState(false);
   const toggle = (i: number) => setOpenIndex((cur) => (cur === i ? null : i));
   // Parallax hero
   const heroRef = useRef<HTMLDivElement>(null);
@@ -738,14 +745,21 @@ export default function Page() {
 
       <section
         id="conditions"
-        className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white scroll-mt-28 md:scroll-mt-36"
+        className="relative overflow-hidden bg-gradient-to-b from-emerald-50/40 via-slate-50 to-white scroll-mt-28 md:scroll-mt-36"
       >
-        {/* Decorative floating blobs */}
+        {/* Soft pattern overlay */}
+        <div className="pointer-events-none absolute inset-0 -z-10 opacity-60 [mask-image:radial-gradient(circle_at_top,_white,_transparent)]">
+          <div className="absolute -top-24 left-10 h-64 w-64 rounded-full bg-emerald-200/40 blur-3xl" />
+          <div className="absolute top-32 right-0 h-72 w-72 rounded-full bg-teal-200/30 blur-3xl" />
+          <div className="absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-emerald-100/40 blur-3xl" />
+        </div>
+
+        {/* Floating blobs */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 12, 0] }}
           transition={{ duration: 1.2, repeat: Infinity, repeatType: "mirror" }}
-          className="pointer-events-none absolute -top-10 -left-16 w-72 h-72 rounded-full bg-emerald-200/40 blur-3xl"
+          className="pointer-events-none absolute -top-10 -left-16 w-64 h-64 rounded-full bg-emerald-300/25 blur-3xl"
         />
 
         <motion.div
@@ -757,30 +771,38 @@ export default function Page() {
             repeatType: "mirror",
             delay: 0.2,
           }}
-          className="pointer-events-none absolute -bottom-12 -right-24 w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl"
+          className="pointer-events-none absolute -bottom-16 -right-20 w-72 h-72 rounded-full bg-teal-300/15 blur-3xl"
         />
 
-        <div className="max-w-6xl mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto px-4 py-16 lg:py-20">
           {/* Heading */}
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 via-emerald-500 to-teal-600"
+            className="max-w-3xl"
           >
-            Conditions I Help Manage
-          </motion.h2>
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-white/70 px-3 py-1 text-xs font-medium text-emerald-700 shadow-sm backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              Conditions I commonly work with
+            </span>
 
-          <p className="mt-2 text-slate-600 max-w-xl">
-            Nutrition-first strategies — no extreme diets, no expensive foods.
-            Just balance, habit-building and long-term results.
-          </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-800 via-emerald-600 to-teal-600">
+              Conditions I Help Manage
+            </h2>
+
+            <p className="mt-2 text-slate-600 text-sm md:text-base">
+              Evidence-based, nutrition-first guidance — no crash diets, no
+              extreme restrictions. Just balanced plans, habit-building and
+              long-term results.
+            </p>
+          </motion.div>
 
           {/* Grid */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={{
               hidden: {},
               visible: {
@@ -789,44 +811,44 @@ export default function Page() {
             }}
             className="mt-8 grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm"
           >
-            {CONDITIONS.map(({ name, icon: Icon }, idx) => (
+            {CONDITIONS.map(({ name, icon: Icon }) => (
               <motion.div
                 key={name}
                 variants={{
-                  hidden: { opacity: 0, y: 16, scale: 0.98 },
+                  hidden: { opacity: 0, y: 18, scale: 0.97 },
                   visible: {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    transition: { type: "spring", stiffness: 240, damping: 20 },
+                    transition: { type: "spring", stiffness: 260, damping: 22 },
                   },
                 }}
-                whileHover={{ scale: 1.03, y: -4 }}
+                whileHover={{ y: -6, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative rounded-xl bg-white/90 border border-slate-100 p-5 shadow-md hover:shadow-xl transition-all duration-300"
+                className="relative rounded-2xl bg-white/80 backdrop-blur border border-emerald-50/80 p-5 shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all duration-300"
               >
-                <div className="flex items-start gap-3">
+                {/* Soft glow bottom highlight */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-3 rounded-b-2xl
+      bg-gradient-to-r from-emerald-200/40 via-teal-200/40 to-emerald-200/40 blur-md"
+                />
+
+                <div className="flex items-start gap-3 relative z-10">
                   <div className="flex-shrink-0">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-50 to-emerald-100 ring-1 ring-emerald-50">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-50 via-emerald-100 to-teal-50 ring-1 ring-emerald-100 shadow-sm">
                       <Icon className="h-5 w-5 text-emerald-600" />
                     </span>
                   </div>
+
                   <div>
-                    <h3 className="font-semibold text-slate-800">{name}</h3>
-                    <p className="mt-1 text-slate-500 text-xs">
-                      Sustainable nutrition + lifestyle changes tailored for
-                      you.
+                    <h3 className="font-semibold text-slate-900 leading-snug">
+                      {name}
+                    </h3>
+                    <p className="mt-1 text-slate-500 text-xs leading-relaxed">
+                      Personalised nutrition guidance for long-term health
+                      improvements.
                     </p>
                   </div>
-                </div>
-
-                <div className="mt-4 h-0.5 rounded-full bg-slate-100 overflow-hidden">
-                  <motion.div
-                    initial={{ width: "25%" }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.5 }}
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-400"
-                  />
                 </div>
               </motion.div>
             ))}
@@ -837,18 +859,24 @@ export default function Page() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-10 flex flex-col sm:flex-row justify-between items-center gap-4"
+            className="mt-10 flex flex-col gap-4 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-5 py-4 md:px-6 md:py-5 shadow-sm md:flex-row md:items-center md:justify-between"
           >
-            <p className="text-sm text-slate-600">
-              Want a personalised diet plan? I offer goal-based coaching with
-              regular check-ins.
-            </p>
+            <div>
+              <p className="text-sm md:text-base font-medium text-emerald-900">
+                Not sure which condition you fall under?
+              </p>
+              <p className="text-xs md:text-sm text-emerald-800/90 mt-0.5">
+                Share your reports and lifestyle, and I’ll suggest the right
+                nutrition approach for you.
+              </p>
+            </div>
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-5 py-2 font-medium shadow hover:scale-105 transition"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-emerald-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition"
             >
-              Book a Consult
+              Book an Online Consult
+              <span aria-hidden>↗</span>
             </a>
           </motion.div>
         </div>
@@ -1136,7 +1164,84 @@ export default function Page() {
           </motion.div>
         </div>
       </section>
+      {/*Transformations*/}
+      {/* Before / After Transformations */}
+      <section
+        id="transformations"
+        className="relative max-w-6xl mx-auto px-4 py-16 scroll-mt-28 md:scroll-mt-36"
+      >
+        {/* soft background glows */}
+        <div className="pointer-events-none absolute -top-16 -left-20 w-72 h-72 bg-emerald-200/25 blur-3xl rounded-full" />
+        <div className="pointer-events-none absolute -bottom-16 right-0 w-72 h-72 bg-teal-200/20 blur-3xl rounded-full" />
 
+        <div className="relative z-10">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
+              Real people. Real transformations.
+            </h2>
+            <p className="mt-2 text-slate-600">
+              With small, sustainable changes and home-cooked food, clients see
+              visible inch loss, better energy and more confidence.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {transformations.map((t, idx) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className="rounded-2xl bg-white/80 backdrop-blur border border-slate-200 shadow-md overflow-hidden flex flex-col"
+              >
+                {/* images */}
+                <div className="grid grid-cols-1 gap-px bg-slate-100">
+                  <div className="relative">
+                    <img
+                      src={t.beforeImg}
+                      alt={`${t.name} - before`}
+                      className="h-full w-full object-fit"
+                    />
+                  </div>
+                </div>
+
+                {/* content */}
+                <div className="p-4 flex-1 flex flex-col">
+                  <div className="flex items-center justify-between gap-2">
+                    <div>
+                      <p className="font-semibold text-slate-900">{t.name}</p>
+                      <p className="text-xs text-emerald-600 font-medium">
+                        {t.goal}
+                      </p>
+                    </div>
+                    <div className="text-[11px] text-slate-500 bg-emerald-50 border border-emerald-100 rounded-full px-2 py-0.5">
+                      {t.duration}
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-sm text-slate-600">{t.highlight}</p>
+
+                  <div className="mt-4 text-xs text-slate-500">
+                    *Individual results vary. All plans are personalized after
+                    assessing medical history, lifestyle and preferences.
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA under transformations */}
+          <div className="mt-10 text-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-5 py-2.5 text-sm font-semibold shadow-lg hover:scale-105 transition"
+            >
+              Book your free consult &nbsp;·&nbsp; Start your own before/after
+            </a>
+          </div>
+        </div>
+      </section>
       {/* Results */}
       <section
         id="results"
@@ -1149,8 +1254,17 @@ export default function Page() {
         {/* AUTO SCROLL WRAPPER */}
         <div className="overflow-hidden">
           <div
-            className="flex gap-6 py-6 animate-[scrollX_25s_linear_infinite]"
+            className={
+              `flex gap-6 py-6 animate-[scrollX_25s_linear_infinite] ` +
+              (isPaused
+                ? "[animation-play-state:paused]"
+                : "[animation-play-state:running]")
+            }
             style={{ width: "200%" }} // because we duplicate items
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
           >
             {[...testimonials, ...testimonials].map((t, i) => (
               <div
@@ -1523,7 +1637,7 @@ export default function Page() {
             <ul className="mt-2 space-y-1 text-slate-100">
               <li>
                 <a
-                  href="#"
+                  href="/privacy"
                   className="hover:text-emerald-300 transition-colors"
                 >
                   Privacy Policy
@@ -1531,7 +1645,7 @@ export default function Page() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/terms"
                   className="hover:text-emerald-300 transition-colors"
                 >
                   Terms of Service
