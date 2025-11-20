@@ -233,7 +233,7 @@ const AboutSection = () => {
     return (
       <div
         ref={ref}
-        className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 relative rounded-2xl p-6 text-center bg-white/10 backdrop-blur-xl border border-white/25 shadow-lg overflow-hidden transition-all duration-300 hover:bg-white/15 hover:shadow-2xl"
+        className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 relative rounded-2xl p-2 text-center bg-white/10 backdrop-blur-xl border border-white/25 shadow-lg overflow-hidden transition-all duration-300 hover:bg-white/15 hover:shadow-2xl"
       >
         {/* glassy orange glow */}
         <div className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(circle_at_top,white,transparent)] " />
@@ -255,7 +255,7 @@ const AboutSection = () => {
     >
       {/* 🔥 ORANGE GLASS STRIP */}
       <div className="w-full ">
-        <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <CountTo end={10} label="Years Clinical Experience" />
           <CountTo end={500} label="Clients Helped" />
           <CountTo end={12} label="Conditions Covered" />
