@@ -3,20 +3,34 @@ import type { Metadata } from "next";
 import "./globals.css";
 import WhatsappButton from "./components/WhatsappButton";
 
-export const metadata: Metadata = {
-  title: "NutritionBitesByPreeti — Clinical Nutritionist, Dt. Preeti Chauhan",
+export const metadata = {
+  title: "Nutrition Bites by Preeti | Clinical Dietitian & Nutrition Expert",
   description:
-    "Transforming health the simple way — no fancy diets, just real results. Weight loss, PCOD, fertility nutrition, diabetes, gut health. Free 15-min consult.",
-  metadataBase: new URL("https://nutritionbitesbypreeti.com"),
+    "Personalized nutrition plans for weight loss, post-pregnancy care, diabetes, PCOD, thyroid & metabolic health — led by Clinical Dietitian Preeti.",
+  metadataBase: new URL("https://www.nutrition-bites-by-preeti.com"),
   openGraph: {
-    title: "NutritionBitesByPreeti — Clinical Nutritionist",
+    title:
+      "Nutrition Bites by Preeti | Transform Your Health with Expert Diet Plans",
     description:
-      "Transforming health the simple way — no fancy diets, just real results.",
-    url: "https://nutritionbitesbypreeti.com",
-    siteName: "NutritionBitesByPreeti",
+      "Holistic nutrition designed for real results — healthy weight loss, lifestyle disorder management & sustainable eating habits.",
+    url: "https://www.nutrition-bites-by-preeti.com",
     type: "website",
+    images: [
+      {
+        url: "https://www.nutrition-bites-by-preeti.com/og-image.jpg", // 🔄 UPDATE THIS IMAGE PATH
+        width: 1200,
+        height: 630,
+        alt: "Dietitian Preeti - Healthy Nutrition & Wellness",
+      },
+    ],
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nutrition Bites by Preeti | Dietitian for Weight Loss & Health",
+    description:
+      "Achieve your goals with customized diet plans & expert guidance from Clinical Dietitian Preeti.",
+    images: ["https://www.nutrition-bites-by-preeti.com/og-image.jpg"], // 🔄 UPDATE THIS IMAGE PATH
+  },
 };
 
 export default function RootLayout({

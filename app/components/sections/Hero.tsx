@@ -55,11 +55,11 @@ export function HeroSection() {
 
           <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             {[
-              "Healthy weight & inch loss",
-              "Knee pain relief & immunity boost",
-              "Hormonal balance & PCOD care",
-              "Increase chances of conceiving",
-              "Gut health • Diabetes • Cholesterol • BP",
+              "Sculpted Weight Loss, Zero Starvation",
+              "Stronger Bones & Better Energy",
+              "Hormone Reset • PCOD Support",
+              "Nutrition that Supports Fertility",
+              "Happy Gut • Balanced Sugar • Heart Health",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <CheckCircle2 className="text-green-600 mt-0.5" size={16} />
