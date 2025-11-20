@@ -7,11 +7,11 @@ export function Topbar() {
   return (
     <div
       id="topbar"
-      className="w-full bg-gradient-to-r from-emerald-700 to-teal-600 text-white text-sm"
+      className="w-full bg-gradient-to-r from-green-800 to-green-600 text-white text-sm"
     >
       <div className="max-w-6xl mx-auto px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <p className="font-medium flex items-center gap-2">
-          <Sparkles size={16} /> Free 15-min consultation • Mon–Sat
+          <Sparkles size={16} /> Free 15-min Consultation • Mon–Sat
         </p>
         <p className="flex flex-wrap gap-4">
           <a
