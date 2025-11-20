@@ -67,10 +67,23 @@ export default function TermsPage() {
           4. Intellectual Property
         </h2>
         <p className="mb-4">
-          All website content, including diet plans, written material, branding,
-          and design, is owned by <strong>Nutrition Bites by Preeti</strong> and
-          protected under copyright laws. It may not be copied, shared, or
-          reproduced without written permission.
+          All original text, diet plans, written material, design, layout, and
+          branding on this website are the intellectual property of{" "}
+          <strong>Nutrition Bites by Preeti</strong> and are protected under
+          applicable copyright laws.
+        </p>
+        <p className="mb-4">
+          Images and media used on this Site include a combination of original
+          visuals provided by Nutrition Bites by Preeti and royalty-free images
+          sourced from trusted platforms such as{" "}
+          <span className="whitespace-nowrap">Pexels</span>, in accordance with
+          their respective free usage licences. Such images remain the property
+          of their original creators.
+        </p>
+        <p className="mb-4">
+          You may not reproduce, modify, publish, or redistribute any part of
+          this website’s content, layout, or written material without prior
+          written permission from <strong>Nutrition Bites by Preeti</strong>.
         </p>
 
         {/* Section 5 */}
