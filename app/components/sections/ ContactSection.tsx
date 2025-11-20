@@ -1,9 +1,17 @@
-// components/sections/SiteFooter.tsx
 "use client";
 
+import { useState } from "react";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 
 export function ContactSection() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [goal, setGoal] = useState("Weight loss");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<null | "success" | "error">(null);
+
   const links: [string, string][] = [
     ["about", "About"],
     ["programs", "Programs"],
@@ -13,6 +21,39 @@ export function ContactSection() {
     ["faq", "FAQs"],
     ["contact", "Book Free Call"],
   ];
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, email, goal, message }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("success");
+        // clear form
+        setName("");
+        setPhone("");
+        setEmail("");
+        setGoal("Weight loss");
+        setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <section
@@ -75,21 +116,26 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* reassurance text */}
           <div className="mt-8 text-xs text-slate-500 flex items-center gap-2">
             <div className="h-2 w-2 bg-emerald-500 rounded-full animate-pulse"></div>
             100% private & secure consultation
           </div>
         </div>
 
-        {/* RIGHT SECTION — BEAUTIFIED FORM */}
-        <form className="rounded-3xl border bg-white/80 backdrop-blur-xl p-8 grid gap-5 shadow-xl">
+        {/* RIGHT SECTION — FORM */}
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-3xl border bg-white/80 backdrop-blur-xl p-8 grid gap-5 shadow-xl"
+        >
           <div>
             <label className="text-sm font-medium text-slate-700">Name</label>
             <input
               className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 
-      focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+              focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
               placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
             />
           </div>
 
@@ -100,8 +146,11 @@ export function ContactSection() {
               </label>
               <input
                 className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 
-        focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+                focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
                 placeholder="Mobile number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
               />
             </div>
 
@@ -112,8 +161,10 @@ export function ContactSection() {
               <input
                 type="email"
                 className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 
-        focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+                focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
                 placeholder="Email (optional)"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -122,7 +173,9 @@ export function ContactSection() {
             <label className="text-sm font-medium text-slate-700">Goal</label>
             <select
               className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 
-      focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+              focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+              value={goal}
+              onChange={(e) => setGoal(e.target.value)}
             >
               <option>Weight loss</option>
               <option>PCOD support</option>
@@ -139,21 +192,36 @@ export function ContactSection() {
             </label>
             <textarea
               className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 
-      focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
+              focus:ring-2 focus:ring-emerald-500 focus:outline-none transition"
               rows={4}
               placeholder="Tell us about your goals..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
           </div>
 
           <button
-            type="button"
+            type="submit"
+            disabled={loading}
             className="relative rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 
-    text-white px-4 py-3 font-semibold shadow-lg hover:shadow-xl 
-    hover:scale-[1.02] transition-transform"
+              text-white px-4 py-3 font-semibold shadow-lg hover:shadow-xl 
+              hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Send Request
+            {loading ? "Sending..." : "Send Request"}
             <span className="absolute inset-0 rounded-xl ring-2 ring-emerald-600/20 animate-pulse"></span>
           </button>
+
+          {status === "success" && (
+            <p className="text-xs text-emerald-600 text-center">
+              ✅ Thank you! Your request has been sent. Preeti will contact you
+              soon.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-xs text-red-500 text-center">
+              ❌ Something went wrong. Please try again or WhatsApp us directly.
+            </p>
+          )}
 
           <p className="text-xs text-slate-500 text-center">
             By submitting, you agree to be contacted via WhatsApp/call.
@@ -161,7 +229,6 @@ export function ContactSection() {
         </form>
       </div>
 
-      {/* decorative wave */}
       <svg
         className="absolute -bottom-1 left-0 w-full"
         viewBox="0 0 1440 40"
